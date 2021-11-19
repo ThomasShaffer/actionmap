@@ -1,0 +1,40 @@
+// Override Bootstrap's default colors.
+
+// Berkeley Blue
+$blue: #003262;
+// "Pacific" from brand.berkeley.edu
+// Has High Enough color contrast with white.
+$pacific: #46535E;
+
+$theme-colors: (
+  "primary": $blue,
+  "info": $pacific,
+);
+
+/** Import Base Bootsrap _after_ our variables. */
+@import "node_modules/bootstrap/scss/bootstrap";
+
+/** Bootstrap Sass Overrides can be added before importing bootstrap and other custom themes. */
+@import "~bootswatch/dist/cosmo/variables";
+@import "~bootstrap/scss/bootstrap.scss";
+@import "~bootswatch/dist/cosmo/bootswatch";
+
+path {
+    fill: #aaa;
+    stroke: #fff;
+    stroke-width: .5px;
+}
+
+.bg-primary-active {
+    background-color: darken($primary, 10%);
+}
+
+.map-container {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.field_with_errors {
+    color: red;
+}
