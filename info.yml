@@ -4,7 +4,7 @@ project:
   teamId: '09'
   identities:
     pivotal:
-      url: 'https://www.pivotaltracker.com/services/v5/github_hooks/0cee39b82016100e436425a66cce0030'
+      url: 'https://www.pivotaltracker.com/n/projects/2540959'
     heroku:
       url: 'https://actionmap09.herokuapp.com'
   members:
@@ -12,9 +12,11 @@ project:
       name: 'Governify'
       surname: 'Auditor' 
       githubUsername: 'governifyauditor'
-      herokuUsername: 'governifyauditor'
+      pivotalUsername: 'governifyauditor'
       herokuEmail: 'governify.auditor@gmail.com'
     member2:
       name: 'Thomas'
       surname: 'Shaffer'
-
+      githubUsername: 'ThomasShaffer'
+      pivotalUsername: 'ThomasShaffer'
+      herokuEmail: 'tshaffer@berkeley.edu'
