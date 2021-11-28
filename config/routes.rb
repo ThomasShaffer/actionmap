@@ -40,4 +40,5 @@ Rails.application.routes.draw do
                                                                       via: [:delete]
     end
     get '/search/(:address)' => 'search#search', :as => 'search_representatives'
+    get '/show/:rep_name' => 'representatives#show', :as => 'show_representative'
 end

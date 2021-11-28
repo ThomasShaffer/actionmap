@@ -1,0 +1,11 @@
+.row.mt-2
+    .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
+        %h1.text-center#{@representative["name"]}
+        %img{:src=>@representative["photo"], :class=>"rounded mx-auto d-block"}
+        %ul
+            %li="OCD ID: " + @representative["ocdid"]
+            %li="Name: " + @representative["name"]
+            %li="Title: " + @representative["title"]
+            %li="Address: " + @representative["address"]
+            %li="Political Party: " + @representative["party"]
+            
