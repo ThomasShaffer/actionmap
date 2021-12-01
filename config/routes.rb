@@ -6,14 +6,14 @@ Rails.application.routes.draw do
     get '/login/google', to: redirect('auth/google_oauth2'), as: :google_login
     get '/login/github', to: redirect('auth/github'), as: :github_login
     get '/auth/google_oauth2/callback', to: 'login#google_oauth2', as: :google_oauth2_callback
-    get '/auth/github/callback', to: 'login#github', as: :github_callback
+    get '/auth/google_oauth2/callback', to: 'login#github', as: :github_callback
     get '/logout' => 'login#logout', :as => :logout
     get '/user/profile', to: 'user#profile', as: :user_profile
 
     root to: 'map#index', as: 'root'
     get '/state/:state_symbol' => 'map#state', :as => :state_map
     get '/state/:state_symbol/county/:std_fips_code' => 'map#county', :as => :county
-
+    
     get '/ajax/state/:state_symbol' => 'ajax#counties'
 
     # Routes for Events
@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     get '/my_events/:id' => 'my_events#edit', :as => :edit_my_event
     match '/my_events/:id', to: 'my_events#update', via: %i[put patch]
     match '/my_events/:id', to: 'my_events#destroy', via: [:delete]
-
+   
     # Routes for Representatives
     resources :representatives, only: [:index]
     resources :representatives do
@@ -40,5 +40,5 @@ Rails.application.routes.draw do
                                                                       via: [:delete]
     end
     get '/search/(:address)' => 'search#search', :as => 'search_representatives'
-    get '/show/:rep_name' => 'representatives#show', :as => 'show_representative'
+    get '/show' => 'representatives#show', :as => 'show_representative', :format => false
 end

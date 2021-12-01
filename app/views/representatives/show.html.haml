@@ -1,11 +1,18 @@
 .row.mt-2
     .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
-        %h1.text-center#{@representative["name"]}
-        %img{:src=>@representative["photo"], :class=>"rounded mx-auto d-block"}
-        %ul
-            %li="OCD ID: " + @representative["ocdid"]
-            %li="Name: " + @representative["name"]
-            %li="Title: " + @representative["title"]
-            %li="Address: " + @representative["address"]
-            %li="Political Party: " + @representative["party"]
+        %h1.text-center.font-weight-bold= @representative.attributes["name"]
+        %h1.text-center= @representative.attributes["title"]
+        %img.text-center{:src=>@representative["photo"]}
+        %br
+        %br
+%ul.list-group
+    %li.list-group-item="OCD ID: "+ @representative["ocdid"].to_s
+    %br
+    %li.list-group-item="Name: " + @representative["name"].to_s
+    %br
+    %li.list-group-item="Title: " + @representative["title"].to_s
+    %br
+    %li.list-group-item="Address: "+ "#{@representative.address} #{@representative.city} #{@representative.state} #{@representative.zip}"
+    %br
+    %li.list-group-item="Political Party: " + @representative["party"].to_s
             

@@ -1,4 +1,4 @@
-
+config/credentials.yml.enc
 *.rbc
 capybara-*.html
 .rspec
