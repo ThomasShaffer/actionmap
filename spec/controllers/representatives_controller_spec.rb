@@ -52,7 +52,7 @@ describe RepresentativesController do
             @fake_result = double('representative1')
             allow(Representative).to receive(:get_one_rep).with('Frank').and_return(@fake_result)
             get :show, params: { name: 'Frank' }
-            expect(assigns(:representative)).to eq(@fake_result)
+            expect(assigns(:rep)).to eq(@fake_result)
         end
     end
 end

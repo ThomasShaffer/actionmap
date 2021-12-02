@@ -9,9 +9,5 @@ describe NationalShapefileRequest do
         it 'calls initialize successfully' do
             described_class.new
         end
-        #it 'calls cmd successfully' do
-        #    a = described_class.new
-        #    a.cmd(nil)
-        #end
     end
 end

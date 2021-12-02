@@ -17,6 +17,8 @@ FactoryBot.define do
         fips_code { 100 }
         fips_class { 'p' }
     end
+end
+FactoryBot.define do
     factory :event do
         name { 'Lane County, OR' }
         description { 'Me' }

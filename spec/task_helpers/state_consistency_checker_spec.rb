@@ -7,7 +7,7 @@ require 'task_helpers/state_shapefile_request'
 describe StateShapefileRequest do
     describe 'testing methods execute without error' do
         @fake_state = { symbol: 'AL', fips_code: '01' }
-        a = described_class.new(@fake_state)
+        described_class.new(@fake_state)
         # a.cmd("nil")
     end
 end
