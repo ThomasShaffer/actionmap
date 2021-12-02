@@ -74,6 +74,7 @@ group :development, :test do
     # Report coverage.
     gem 'codecov', require: false
     gem 'simplecov'
+    gem 'simplecov-console'
 end
 
 group :development do

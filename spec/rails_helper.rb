@@ -3,12 +3,10 @@
 # See: https://github.com/codecov/example-ruby
 
 require 'simplecov'
+require 'simplecov-console'
 SimpleCov.start 'rails'
 
-if ENV['CI']
-    require 'codecov'
-    SimpleCov.formatter = SimpleCov::Formatter::Codecov
-end
+SimpleCov.formatter = SimpleCov::Formatter::Console if ENV['CI']
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
