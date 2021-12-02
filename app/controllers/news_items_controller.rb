@@ -5,7 +5,7 @@ class NewsItemsController < ApplicationController
     before_action :set_news_item, only: %i[show]
 
     def index
-        @news_items = @representative.news_items
+        @news_items = @rep.news_items
     end
 
     def show; end
@@ -13,7 +13,7 @@ class NewsItemsController < ApplicationController
     private
 
     def set_representative
-        @representative = Representative.find(
+        @rep = Representative.find(
             params[:representative_id]
         )
     end
