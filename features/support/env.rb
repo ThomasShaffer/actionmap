@@ -10,7 +10,9 @@
 
 require 'simplecov'
 require 'simplecov-console'
-SimpleCov.start 'rails'
+SimpleCov.start 'rails' do
+    add_filter 'lib'
+end
 
 SimpleCov.formatter = SimpleCov::Formatter::Console if ENV['CI']
 
