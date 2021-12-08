@@ -4,6 +4,7 @@ class MyNewsItemsController < SessionController
     before_action :set_representative
     before_action :set_representatives_list
     before_action :set_issues_list
+    before_action :set_ratings_list
     before_action :set_news_item, only: %i[edit update destroy]
 
     def new
@@ -15,6 +16,10 @@ class MyNewsItemsController < SessionController
     def create
         item_params(params)
         @news_item = NewsItem.new(@parameters)
+        @rating_chosen = params[:rating] 
+        @news_id = @news_item["id"] 
+        
+        Rating.create({'rating': @rating_chosen, 'news_items_id': @news_id})
         if @news_item.save
             redirect_to representative_news_item_path(@representative, @news_item),
                         notice: 'News item was successfully created.'
@@ -56,11 +61,14 @@ class MyNewsItemsController < SessionController
     end
 
     def item_params(params_hash)
+        @ratings_chosen = params_hash[:news_item][:rating] 
         @parameters = { "title":             params_hash[:news_item][:title],
                         "link":              params_hash[:news_item][:link],
                         "description":       params_hash[:news_item][:description],
                         "representative_id": params_hash[:news_item][:representative_id],
-                        "issue":             params_hash[:news_item][:issue] }
+                        "issue":             params_hash[:news_item][:issue],
+                        }
+        
     end
 
     def set_issues_list
@@ -71,8 +79,11 @@ class MyNewsItemsController < SessionController
                    'Border Security', 'Minimum Wage', 'Equal Pay']
     end
 
+    def set_ratings_list
+        @ratings = [1,2,3,4,5] 
+    end
     # Only allow a list of trusted parameters through.
     def news_item_params
-        params.require(:news_item).permit(:news, :title, :description, :link, :representative_id)
+        params.require(:news_item).permit(:news, :title, :description, :link, :representative_id,:rating)
     end
 end

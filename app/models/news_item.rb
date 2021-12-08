@@ -9,4 +9,8 @@ class NewsItem < ApplicationRecord
             representative_id: representative_id
         )
     end
+
+    def self.find_rating(article_id)
+        NewsItem.Item.find_by(article_id: article_id)
+    end
 end

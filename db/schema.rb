@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_07_205108) do
+ActiveRecord::Schema.define(version: 2021_12_08_031816) do
 
   create_table "counties", force: :cascade do |t|
     t.string "name", null: false
@@ -42,6 +42,18 @@ ActiveRecord::Schema.define(version: 2021_12_07_205108) do
     t.datetime "updated_at", null: false
     t.string "issue"
     t.index ["representative_id"], name: "index_news_items_on_representative_id"
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer "rating"
+    t.integer "news_items_id"
+    t.integer "index_news_items_to_representative_id_id"
+    t.integer "users_id"
+    t.integer "uid_id"
+    t.index ["index_news_items_to_representative_id_id"], name: "index_ratings_on_index_news_items_to_representative_id_id"
+    t.index ["news_items_id"], name: "index_ratings_on_news_items_id"
+    t.index ["uid_id"], name: "index_ratings_on_uid_id"
+    t.index ["users_id"], name: "index_ratings_on_users_id"
   end
 
   create_table "representatives", force: :cascade do |t|
