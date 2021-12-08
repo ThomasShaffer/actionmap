@@ -16,11 +16,12 @@ class MyNewsItemsController < SessionController
     def create
         item_params(params)
         @news_item = NewsItem.new(@parameters)
-        @rating_chosen = params[:rating] 
-        @news_id = @news_item["id"] 
-        
-        Rating.create({'rating': @rating_chosen, 'news_items_id': @news_id})
+        @rating_chosen = params[:news_item][:rating].to_i
         if @news_item.save
+            @news_id = NewsItem.last.id
+            @rating = Rating.create!({ 'rating': @rating_chosen, 'news_item_id': @news_id,
+'user_id': session[:current_user_id] })
+            # @rating.save
             redirect_to representative_news_item_path(@representative, @news_item),
                         notice: 'News item was successfully created.'
         else
@@ -30,7 +31,9 @@ class MyNewsItemsController < SessionController
 
     def update
         item_params(params)
+        @rating_chosen = params[:news_item][:rating].to_i
         if @news_item.update(@parameters)
+            @news_item.ratings.last.update({ "rating": @rating_chosen })
             redirect_to representative_news_item_path(@representative, @news_item),
                         notice: 'News item was successfully updated.'
         else
@@ -61,14 +64,12 @@ class MyNewsItemsController < SessionController
     end
 
     def item_params(params_hash)
-        @ratings_chosen = params_hash[:news_item][:rating] 
+        @ratings_chosen = params_hash[:news_item][:rating]
         @parameters = { "title":             params_hash[:news_item][:title],
                         "link":              params_hash[:news_item][:link],
                         "description":       params_hash[:news_item][:description],
                         "representative_id": params_hash[:news_item][:representative_id],
-                        "issue":             params_hash[:news_item][:issue],
-                        }
-        
+                        "issue":             params_hash[:news_item][:issue] }
     end
 
     def set_issues_list
@@ -80,10 +81,11 @@ class MyNewsItemsController < SessionController
     end
 
     def set_ratings_list
-        @ratings = [1,2,3,4,5] 
+        @ratings = [1, 2, 3, 4, 5]
     end
+
     # Only allow a list of trusted parameters through.
     def news_item_params
-        params.require(:news_item).permit(:news, :title, :description, :link, :representative_id,:rating)
+        params.require(:news_item).permit(:news, :title, :description, :link, :representative_id, :rating)
     end
 end

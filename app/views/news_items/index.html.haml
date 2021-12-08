@@ -33,9 +33,9 @@
                                         %i.fas.fa-external-link-alt
                                 %td= item.description
                                 %td= item.issue
-                                %td = item.rating
                                 %td
                                     %time.timeago{ datetime: item.created_at.iso8601 }
+                                %td= item.ratings.first
                                 %td
                                     = link_to representative_news_item_path(item.representative.id, item.id),
                                     class: 'btn btn-info' do
