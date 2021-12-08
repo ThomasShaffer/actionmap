@@ -8,7 +8,6 @@ class CreateNewsItems < ActiveRecord::Migration[5.2]
             t.text :description
             t.belongs_to :representative, null: false, index: true
             t.timestamps null: false
-            t.has_many :ratings
         end
     end
 
